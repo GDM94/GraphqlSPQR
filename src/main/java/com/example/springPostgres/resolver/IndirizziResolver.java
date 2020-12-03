@@ -1,20 +1,44 @@
 package com.example.springPostgres.resolver;
 
 
+import com.example.springPostgres.IService.IidrizzoService;
 import com.example.springPostgres.model.Anagrafica;
 import com.example.springPostgres.model.Indirizzo;
 import com.example.springPostgres.repositories.AnagraficaRepository;
+import io.leangen.graphql.annotations.GraphQLMutation;
+import io.leangen.graphql.annotations.GraphQLQuery;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.Optional;
 
 @Component
 public class IndirizziResolver {
-    private AnagraficaRepository anagraficaRepository;
+    @Autowired
+    IidrizzoService idrizzoService;
 
-    public  IndirizziResolver (AnagraficaRepository anagraficaRepository){
-        this.anagraficaRepository = anagraficaRepository;
+    @GraphQLQuery
+    public Optional<Indirizzo> indirizzoById(Long id){
+        return idrizzoService.indirizzoById(id);
     }
 
-    public Anagrafica getAnagrafica(Indirizzo indirizzo){
-        return anagraficaRepository.findById(indirizzo.getAnagrafica().getIdana()).orElse(null);
+    @GraphQLQuery
+    public Iterable<Indirizzo> indirizzoAll(){
+        return idrizzoService.indirizzoAll();
+    }
+
+    @GraphQLMutation
+    public Indirizzo newIndirizzo(Long id, Long idana, String descrizione){
+        return  idrizzoService.newIndirizzo(id, idana, descrizione);
+    }
+
+    @GraphQLMutation
+    public Optional<Indirizzo> updateIndirizzo(Long id, String descrizione){
+        return idrizzoService.updateIndirizzo(id, descrizione);
+    }
+
+    @GraphQLMutation
+    public boolean deleteIndirizzo(Long id){
+        return idrizzoService.deleteIndirizzo(id);
     }
 }
