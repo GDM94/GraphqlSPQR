@@ -54,7 +54,7 @@ public class Mutation implements GraphQLMutationResolver {
         return anagrafica;
     }
 
-    public boolean deleteAnagrafica(Long id) {
+    public boolean deleteAnagrafica(long id) {
         anagraficaRepository.deleteById(id);
         return true;
     }
