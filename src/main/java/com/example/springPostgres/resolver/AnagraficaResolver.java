@@ -1,40 +1,44 @@
 package com.example.springPostgres.resolver;
 
-public class AnagraficaResolver {
-}
 
+import com.example.springPostgres.IService.IAnagraficaService;
+import com.example.springPostgres.model.Anagrafica;
+import io.leangen.graphql.annotations.GraphQLMutation;
+import io.leangen.graphql.annotations.GraphQLQuery;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import java.util.Optional;
 
 @Component
 public class AnagraficaResolver {
 
     @Autowired
-    private IUserService userService;
+    private IAnagraficaService anagraficaService;
 
-    @GraphQLMutation(name="createUser")
-    public User createUser(@GraphQLArgument(name="details") User user) {
-        return userService.createUser(user);
+    @GraphQLMutation
+    public Anagrafica newAnagrafica(Long id, String nome, String cognome) {
+        return anagraficaService.newAnagrafica(id, nome, cognome);
     }
 
-    @GraphQLQuery(name="getAllUser")
-    public List<User> getAllUser() {
-        return userService.getAllUsers();
+    @GraphQLMutation
+    public Optional<Anagrafica> updateAnagrafica(Long id, String nome, String cognome) {
+        return anagraficaService.updateAnagrafica(id, nome, cognome);
     }
 
-    @GraphQLMutation(name="updateUser")
-    public User updateUser(@GraphQLArgument(name="details") User user) {
-        return userService.updateUser(user);
+    @GraphQLMutation
+    public boolean deleteAnagrafica(Long id) {
+        return anagraficaService.deleteAnagrafica(id);
     }
 
-    @GraphQLMutation(name="deleteUser")
-    public Boolean deleteUser(@GraphQLArgument(name="userId") String id) {
-        userService.deleteUser(id);
-        return true;
+    @GraphQLQuery
+    public Optional<Anagrafica> anagraficaById(Long id) {
+        return anagraficaService.anagraficaById(id);
     }
 
-    @GraphQLQuery(name="getUser")
-    public User getUser(@GraphQLArgument(name="userId") String id) {
-        return userService.getUser(id);
+    @GraphQLQuery
+    public Iterable<Anagrafica> anagraficaAll() {
+        return anagraficaService.anagraficaAll();
     }
-
 
 }
