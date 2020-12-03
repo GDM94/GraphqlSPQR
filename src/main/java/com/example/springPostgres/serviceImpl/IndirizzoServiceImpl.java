@@ -1,8 +1,9 @@
 package com.example.springPostgres.serviceImpl;
 
-import com.example.springPostgres.IService.IidrizzoService;
+import com.example.springPostgres.IService.IindrizzoService;
 import com.example.springPostgres.model.Anagrafica;
 import com.example.springPostgres.model.Indirizzo;
+import com.example.springPostgres.repositories.AnagraficaRepository;
 import com.example.springPostgres.repositories.IndirizzoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,10 +12,13 @@ import java.util.Date;
 import java.util.Optional;
 
 @Service
-public class IndirizzoServiceImpl implements IidrizzoService {
+public class IndirizzoServiceImpl implements IindrizzoService {
 
     @Autowired
     private IndirizzoRepository indirizzoRepository;
+
+    @Autowired
+    private AnagraficaRepository anagraficaRepository;
 
     @Override
     public Optional<Indirizzo> indirizzoById(Long id){
@@ -60,6 +64,11 @@ public class IndirizzoServiceImpl implements IidrizzoService {
     public boolean deleteIndirizzo(Long id){
         indirizzoRepository.deleteById(id);
         return true;
+    }
+
+    @Override
+    public Anagrafica getAnagrafica(Indirizzo indirizzo){
+        return anagraficaRepository.findById(indirizzo.getAnagrafica().getIdana()).orElse(null);
     }
 
 }

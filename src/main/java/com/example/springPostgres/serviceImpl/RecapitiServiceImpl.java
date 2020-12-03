@@ -3,6 +3,7 @@ package com.example.springPostgres.serviceImpl;
 import com.example.springPostgres.IService.IRecapitiService;
 import com.example.springPostgres.model.Anagrafica;
 import com.example.springPostgres.model.RecapitiTelefonici;
+import com.example.springPostgres.repositories.AnagraficaRepository;
 import com.example.springPostgres.repositories.RecapitiRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,9 @@ import java.util.Optional;
 public class RecapitiServiceImpl implements IRecapitiService {
     @Autowired
     private RecapitiRepository recapitiRepository;
+
+    @Autowired
+    private AnagraficaRepository anagraficaRepository;
 
     @Override
     public Optional<RecapitiTelefonici> recapitoById(Long id){
@@ -54,5 +58,9 @@ public class RecapitiServiceImpl implements IRecapitiService {
 
         return recapitiTelefonici;
 
+    }
+
+    public Anagrafica getAnagrafica(RecapitiTelefonici recapitiTelefonici){
+        return anagraficaRepository.findById(recapitiTelefonici.getAnagrafica().getIdana()).orElse(null);
     }
 }

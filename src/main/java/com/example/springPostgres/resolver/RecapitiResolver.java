@@ -1,6 +1,7 @@
 package com.example.springPostgres.resolver;
 
 import com.example.springPostgres.IService.IRecapitiService;
+import com.example.springPostgres.model.Anagrafica;
 import com.example.springPostgres.model.RecapitiTelefonici;
 import io.leangen.graphql.annotations.GraphQLMutation;
 import io.leangen.graphql.annotations.GraphQLQuery;
@@ -23,6 +24,11 @@ public class RecapitiResolver {
     @GraphQLQuery
     public Iterable<RecapitiTelefonici> recapitoAll(){
         return recapitiService.recapitoAll();
+    }
+
+    @GraphQLQuery
+    public Anagrafica getAnagrafica(RecapitiTelefonici recapitiTelefonici){
+        return recapitiService.getAnagrafica(recapitiTelefonici);
     }
 
     @GraphQLMutation
