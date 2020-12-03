@@ -59,8 +59,4 @@ public class RecapitiServiceImpl implements IRecapitiService {
         return recapitiTelefonici;
 
     }
-
-    public Anagrafica getAnagrafica(RecapitiTelefonici recapitiTelefonici){
-        return anagraficaRepository.findById(recapitiTelefonici.getAnagrafica().getIdana()).orElse(null);
-    }
 }

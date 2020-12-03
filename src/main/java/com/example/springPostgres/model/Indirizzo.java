@@ -33,8 +33,10 @@ public class Indirizzo implements Serializable {
     @Column(name = "date_agg", nullable = false)
     private java.util.Date date_agg;
 
+
     @ManyToOne()
     @JoinColumn(name = "idana", nullable = false, insertable = false, updatable = false)
     private Anagrafica anagrafica;
+
 
 }

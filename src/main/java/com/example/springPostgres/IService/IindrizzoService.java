@@ -12,6 +12,6 @@ public interface IindrizzoService {
     public Indirizzo newIndirizzo(Long id, Long idana, String descrizione);
     public Optional<Indirizzo> updateIndirizzo(Long id, String descrizione);
     public boolean deleteIndirizzo(Long id);
-    public Anagrafica getAnagrafica(Indirizzo indirizzo);
+
 
 }

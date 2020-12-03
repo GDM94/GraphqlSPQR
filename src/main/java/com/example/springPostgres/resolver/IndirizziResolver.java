@@ -27,10 +27,6 @@ public class IndirizziResolver {
         return idrizzoService.indirizzoAll();
     }
 
-    @GraphQLQuery
-    public Anagrafica getAnagrafica(Indirizzo indirizzo){
-        return idrizzoService.getAnagrafica(indirizzo);
-    }
 
     @GraphQLMutation
     public Indirizzo newIndirizzo(Long id, Long idana, String descrizione){

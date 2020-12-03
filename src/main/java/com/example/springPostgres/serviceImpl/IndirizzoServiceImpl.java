@@ -66,9 +66,5 @@ public class IndirizzoServiceImpl implements IindrizzoService {
         return true;
     }
 
-    @Override
-    public Anagrafica getAnagrafica(Indirizzo indirizzo){
-        return anagraficaRepository.findById(indirizzo.getAnagrafica().getIdana()).orElse(null);
-    }
 
 }

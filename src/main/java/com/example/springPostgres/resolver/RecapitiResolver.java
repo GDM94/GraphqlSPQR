@@ -26,11 +26,6 @@ public class RecapitiResolver {
         return recapitiService.recapitoAll();
     }
 
-    @GraphQLQuery
-    public Anagrafica getAnagrafica(RecapitiTelefonici recapitiTelefonici){
-        return recapitiService.getAnagrafica(recapitiTelefonici);
-    }
-
     @GraphQLMutation
     public RecapitiTelefonici newRecapiti(Long id, Long idana, String tipo_recapito, String numero_recapito){
         return recapitiService.newRecapiti(id, idana, tipo_recapito, numero_recapito);
