@@ -13,7 +13,7 @@ public class SpringPostgresApplication {
 	private static final Logger logger = LoggerFactory.getLogger(SpringPostgresApplication.class);
 
 	public static void main(String[] args) {
-		logger.debug("Hello from Logback");
+		logger.info("Hello from Logback");
 
 		SpringApplication.run(SpringPostgresApplication.class, args);
 	}
