@@ -28,7 +28,7 @@ public class Mutation implements GraphQLMutationResolver {
         this.recapitiRepository = recapitiRepository;
     }
 
-    public Anagrafica newAnagrafica(int id, String nome, String cognome ){
+    public Anagrafica newAnagrafica(Long id, String nome, String cognome ){
         Anagrafica anagrafica = new Anagrafica();
         anagrafica.setIdana(id);
         anagrafica.setNome(nome);
@@ -59,7 +59,7 @@ public class Mutation implements GraphQLMutationResolver {
         return true;
     }
 
-    public Indirizzo newIndirizzo(int id, int idana, String descrizione){
+    public Indirizzo newIndirizzo(Long id, Long idana, String descrizione){
         Indirizzo indirizzo = new Indirizzo();
         indirizzo.setIdaddress(id);
         indirizzo.setIdana(idana);
@@ -95,7 +95,7 @@ public class Mutation implements GraphQLMutationResolver {
 
  */
 
-    public RecapitiTelefonici newRecapito(int id, int idana, String tipo_recapito, String numero_recapito){
+    public RecapitiTelefonici newRecapito(Long id, Long idana, String tipo_recapito, String numero_recapito){
         RecapitiTelefonici recapitiTelefonici = new RecapitiTelefonici();
         recapitiTelefonici.setIdreca(id);
         recapitiTelefonici.setIdana(idana);
