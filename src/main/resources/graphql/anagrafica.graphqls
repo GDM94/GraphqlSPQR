@@ -1,0 +1,19 @@
+
+type Anagrafica{
+    idana: ID!
+    nome: String!
+    cognome: String!
+    date_create: String!
+    date_agg: String!
+}
+
+extend type Query {
+    anagraficaById(id: ID!): Anagrafica
+    anagraficaAll: [Anagrafica]!
+}
+
+extend type Mutation {
+    newAnagrafica(idana: ID!, nome: String!, cognome: String!):Anagrafica!
+    updateAnagrafica(id: ID!, nome: String!, cognome: String!): Anagrafica
+    deleteAnagrafica(id: ID): Boolean!
+}
