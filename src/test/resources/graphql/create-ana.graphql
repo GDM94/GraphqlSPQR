@@ -1,6 +1,0 @@
-mutation {
-    newAnagrafica(id: 12, nome: "Giancarlo", cognome:"Bho"){
-        idana
-        nome
-    }
-}
