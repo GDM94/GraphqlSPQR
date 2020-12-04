@@ -25,7 +25,36 @@ public class GraphqlTest {
     public void Test2() throws Exception {
         this.mockMvc2.perform(MockMvcRequestBuilders
                 .post("/graphql")
-                .content("{\"query\":\" {anagraficaAll { nome } } \"}")
+                .content("{\"query\":\" {anagraficaAll { nome cognome } } \"}")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk());
+
+    }
+
+    @Test
+    public void Test3() throws Exception {
+        this.mockMvc2.perform(MockMvcRequestBuilders
+                .post("/graphql")
+                .content("{\"query\":\" {anagraficaById(id:1) { idana nome cognome } } \"}")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk());
+
+    }
+
+    @Test
+    public void Test4() throws Exception {
+        this.mockMvc2.perform(MockMvcRequestBuilders
+                .post("/graphql")
+                //.content("{\"mutation\":\" {newAnagrafica(id: 13, nome: Giancarlo, cognome: Bho) } {nome cognome} \"}")
+                .content("{\"mutation\": \"{\n" +
+                        "    newAnagrafica(id: 15, nome: \"Carletto\", cognome: \"Luciani\"){\n" +
+                        "        nome\n" +
+                        "    }\n" +
+                        " \"}")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
