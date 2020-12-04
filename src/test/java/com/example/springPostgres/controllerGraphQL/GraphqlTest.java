@@ -1,6 +1,9 @@
 package com.example.springPostgres.controllerGraphQL;
+import com.example.springPostgres.repositories.AnagraficaRepository;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Moc
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -51,14 +54,11 @@ public class GraphqlTest {
 
     @Test
     public void Test4() throws Exception {
-        //jo2.put("mutation", "{newAnagrafica(id: 15, nome: 'Carlo', cognome: 'Luciani') { idana nome cognome} }");
-        jo2.put("mutation", "{deleteAnagrafica(id: 1)}");
-        System.out.println(jo2.toString());
+        jo2.put("mutation", "{newAnagrafica(id: 15, nome: \"Carlo\", cognome: \"Luciani\") { idana nome cognome} }");
+        //o2.put("mutation", "{deleteAnagrafica(id: 1)}");
+        //System.out.println(jo2.toString());
 
         //jo.put("query", "{anagraficaById(id: 2) { nome } }");
-
-
-        /*
 
         this.mockMvc2.perform(MockMvcRequestBuilders
                 .post("/graphql")
@@ -69,7 +69,7 @@ public class GraphqlTest {
                 .andExpect(status().isOk());
 
 
-*/
+
     }
 
 }
@@ -82,6 +82,13 @@ class GraphqlTest2 {
 
     @Autowired
     private MockMvc mockMvc3;
+
+    @Mock
+    AnagraficaRepository anagraficaRepository;
+
+    @InjectMocks
+
+
 
 
     @Test
