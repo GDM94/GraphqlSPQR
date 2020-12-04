@@ -19,7 +19,7 @@ public interface AnagraficaRepository extends JpaRepository<Anagrafica, Long> {
     @Transactional
     @Query(value = "UPDATE anagrafica SET nome = :nome  WHERE idana = :id",
             nativeQuery = true)
-    void updateNomeCognome(@Param("id") long id, @Param("nome") String nomeIn);
+    int updateNomeCognome(@Param("id") long id, @Param("nome") String nomeIn);
 
     @Query(value = "SELECT ana.nome from anagrafica ana WHERE ana.idana = :id",
             nativeQuery = true)
