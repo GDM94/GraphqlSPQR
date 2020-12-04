@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 @SpringBootTest
-public class RepositoryTest {
+public class RepositoriesTest {
 
     @Autowired
     private AnagraficaRepository anagraficaRepository;
