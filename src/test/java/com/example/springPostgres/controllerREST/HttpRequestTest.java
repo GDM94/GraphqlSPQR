@@ -12,6 +12,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.testcontainers.junit.jupiter.Testcontainers;
+import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.Date;
 
@@ -22,7 +23,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
-@ActiveProfiles("test")
 @AutoConfigureMockMvc
 @Testcontainers
 public class HttpRequestTest {
@@ -32,21 +32,59 @@ public class HttpRequestTest {
 
 
     @Test
-    public void Test1() throws Exception {
-        this.mockMvc.perform(get("http://localhost:8080/anagrafica/hello")).andDo(print()).andExpect(status().isOk())
-                .andExpect(content().string(containsString("Hello World")));
-    }
-
-    @Test
-    public void Test2() throws Exception {
+    public void testGet() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders
-                .get("http://localhost:8080/anagrafica")
+                .get("/anagrafica")
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$[*].idana").exists())
                 .andExpect(MockMvcResultMatchers.jsonPath("$[*].idana").isNotEmpty());
 
+    }
+
+    @Test
+    public void testPost() throws Exception{
+        Anagrafica anagrafica = new Anagrafica();
+        anagrafica.setIdana((long) 1);
+        anagrafica.setNome("NomeTest");
+        anagrafica.setCognome("CognomeTest");
+        Date date = new Date();
+        anagrafica.setDate_create(date);
+        anagrafica.setDate_agg(date);
+
+        this.mockMvc.perform(MockMvcRequestBuilders
+            .post("/anagrafica")
+            .content(new ObjectMapper().writeValueAsString(anagrafica))
+            .contentType(MediaType.APPLICATION_JSON)
+            .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void putTest() throws Exception{
+        Anagrafica anagrafica = new Anagrafica();
+        anagrafica.setIdana((long) 1);
+        anagrafica.setNome("NomeTest2");
+        anagrafica.setCognome("CognomeTest2");
+        Date date = new Date();
+        anagrafica.setDate_create(date);
+        anagrafica.setDate_agg(date);
+        this.mockMvc.perform(MockMvcRequestBuilders
+                .put("/anagrafica/1")
+                .content(new ObjectMapper().writeValueAsString(anagrafica))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void deleteTest() throws Exception{
+        this.mockMvc.perform(MockMvcRequestBuilders
+                .delete("/anagrafica/{id}", 1))
+                .andExpect(status().isAccepted());
     }
 
 
