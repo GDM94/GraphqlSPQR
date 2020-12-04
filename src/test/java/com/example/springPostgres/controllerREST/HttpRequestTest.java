@@ -30,9 +30,6 @@ public class HttpRequestTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @Autowired
-    public AnagraficaRepository anagraficaRepository;
-
 
     @Test
     public void Test1() throws Exception {

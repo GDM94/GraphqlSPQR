@@ -25,9 +25,6 @@ public class GraphqlTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @Autowired
-    public AnagraficaRepository anagraficaRepository;
-
     @Test
     public void Test2() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders
