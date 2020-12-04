@@ -1,6 +1,6 @@
-package com.example.springPostgres.controllerREST;
+package com.example.springPostgres.controllerGraphQL;
 
-import com.example.springPostgres.model.Anagrafica;
+
 import com.example.springPostgres.repositories.AnagraficaRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,19 +13,14 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
-import java.util.Date;
-
-import static org.hamcrest.Matchers.containsString;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @ActiveProfiles("test")
 @AutoConfigureMockMvc
 @Testcontainers
-public class HttpRequestTest {
+public class GraphqlTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -33,26 +28,15 @@ public class HttpRequestTest {
     @Autowired
     public AnagraficaRepository anagraficaRepository;
 
-
-    @Test
-    public void Test1() throws Exception {
-        this.mockMvc.perform(get("http://localhost:8080/anagrafica/hello")).andDo(print()).andExpect(status().isOk())
-                .andExpect(content().string(containsString("Hello World")));
-    }
-
     @Test
     public void Test2() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders
-                .get("http://localhost:8080/anagrafica")
+                .post("http://localhost:8080/graphql")
+                .content("{\"query\":\" {anagraficaAll { nome } } \"}")
+                .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$[*].idana").exists())
-                .andExpect(MockMvcResultMatchers.jsonPath("$[*].idana").isNotEmpty());
+                .andExpect(status().isOk());
 
     }
-
-
-
-
 }
