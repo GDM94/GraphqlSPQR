@@ -18,14 +18,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Testcontainers
 public class GraphqlTest {
 
+    public JSONObject jo = new JSONObject();
+    private JSONObject jo2 = new JSONObject();
+
     @Autowired
     private MockMvc mockMvc2;
 
     @Test
     public void Test2() throws Exception {
-        JSONObject jo = new JSONObject();
-        jo.put("query", "{anagraficaById(id: 2) { nome } }");
 
+        jo.put("query", "{anagraficaById(id: 2) { nome } }");
         this.mockMvc2.perform(MockMvcRequestBuilders
                 .post("/graphql")
                 .content(jo.toString())
@@ -49,15 +51,56 @@ public class GraphqlTest {
 
     @Test
     public void Test4() throws Exception {
+        //jo2.put("mutation", "{newAnagrafica(id: 15, nome: 'Carlo', cognome: 'Luciani') { idana nome cognome} }");
+        jo2.put("mutation", "{deleteAnagrafica(id: 1)}");
+        System.out.println(jo2.toString());
+
+        //jo.put("query", "{anagraficaById(id: 2) { nome } }");
+
+
+        /*
+
         this.mockMvc2.perform(MockMvcRequestBuilders
                 .post("/graphql")
-                //.content("{\"mutation\":\" {newAnagrafica(id: 13, nome: Giancarlo, cognome: Bho) } {nome cognome} \"}")
-                .content("{\"mutation\": \"{\n" +
-                        "    newAnagrafica(id: 15, nome: \"Carletto\", cognome: \"Luciani\"){\n" +
-                        "        nome\n" +
-                        "    }\n" +
-                        " \"}"));
+                .content(jo2.toString())
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk());
+
+
+*/
     }
 
+}
+
+@SpringBootTest
+//@ActiveProfiles("test")
+@AutoConfigureMockMvc
+@Testcontainers
+class GraphqlTest2 {
+
+    @Autowired
+    private MockMvc mockMvc3;
+
+
+    @Test
+    public void Test5() throws Exception {
+        //jo2.put("mutation", "{newAnagrafica(id: 15, nome: 'Carlo', cognome: 'Luciani') { idana nome cognome} }");
+        JSONObject jo2 = new JSONObject();
+        jo2.put("mutation", "{deleteAnagrafica(id: 1)}");
+        System.out.println(jo2);
+
+        //jo.put("query", "{anagraficaById(id: 2) { nome } }");
+
+
+        this.mockMvc3.perform(MockMvcRequestBuilders
+                .post("/graphql")
+                .content(jo2.toString())
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
 
 }
