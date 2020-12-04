@@ -34,8 +34,9 @@ public class Indirizzo implements Serializable {
     private java.util.Date date_agg;
 
 
-    @ManyToOne()
-    @JoinColumn(name = "idana", nullable = false, insertable = false, updatable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idana", insertable = false, updatable = false)
+    @Fetch(FetchMode.JOIN)
     private Anagrafica anagrafica;
 
 

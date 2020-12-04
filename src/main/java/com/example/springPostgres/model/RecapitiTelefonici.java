@@ -30,7 +30,8 @@ public class RecapitiTelefonici implements Serializable {
     @Column(name="numero_recapito", nullable = false)
     private String numero_recapito;
 
-    @ManyToOne()
-    @JoinColumn(name = "idana", nullable = false, insertable = false, updatable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idana", insertable = false, updatable = false)
+    @Fetch(FetchMode.JOIN)
     private Anagrafica anagrafica;
 }

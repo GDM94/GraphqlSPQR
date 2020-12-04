@@ -3,6 +3,7 @@ package com.example.springPostgres.controller;
 import com.example.springPostgres.model.Anagrafica;
 import com.example.springPostgres.repositories.AnagraficaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -63,14 +64,12 @@ public class AnagraficaController {
     }
 
     @DeleteMapping("/{id}")    // DELETE Method for Delete operation
-    public Map<String, Boolean> deleteAnagrafica(@PathVariable(value = "id") Long anaID) throws Exception {
+    public ResponseEntity<HttpStatus> deleteAnagrafica(@PathVariable(value = "id") Long anaID) throws Exception {
         Anagrafica anagrafica = anagraficaRepository.findById(anaID)
-                .orElseThrow(() -> new Exception("Phone " + anaID + " not found"));
+                .orElseThrow(() -> new Exception("Anagrafica " + anaID + " not found"));
 
         anagraficaRepository.delete(anagrafica);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        return response;
+        return new ResponseEntity<HttpStatus>(HttpStatus.ACCEPTED);
     }
 
     @PatchMapping("/patch/nome/{id}")
