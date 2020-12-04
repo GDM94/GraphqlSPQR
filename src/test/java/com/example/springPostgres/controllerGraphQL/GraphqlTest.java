@@ -1,8 +1,4 @@
 package com.example.springPostgres.controllerGraphQL;
-
-
-
-
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,63 +20,6 @@ public class GraphqlTest {
 
     @Autowired
     private MockMvc mockMvc2;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     @Test
     public void Test2() throws Exception {
