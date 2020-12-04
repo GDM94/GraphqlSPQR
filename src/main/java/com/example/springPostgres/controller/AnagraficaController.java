@@ -16,6 +16,9 @@ public class AnagraficaController {
     @Autowired
     public AnagraficaRepository anagraficaRepository;
 
+    @GetMapping("/hello")
+    public String getHello() { return "Hello World"; }
+
     @GetMapping   // GET Method for reading operation
     public List<Anagrafica> getAllanagrafica() {
         return anagraficaRepository.findAll();
@@ -88,7 +91,7 @@ public class AnagraficaController {
             @RequestBody Anagrafica partialUpdate,
             @PathVariable("id") long anaId)  throws Exception {
 
-        anagraficaRepository.updateNomeCognome(anaId, partialUpdate.getNome());
+        int i = anagraficaRepository.updateNomeCognome(anaId, partialUpdate.getNome());
         return "query update executed";
     }
 
