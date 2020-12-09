@@ -1,6 +1,6 @@
-package com.example.springPostgres.serviceImpl;
+package com.example.springPostgres.service.impl;
 
-import com.example.springPostgres.IService.IindrizzoService;
+import com.example.springPostgres.service.IndrizzoService;
 import com.example.springPostgres.model.Anagrafica;
 import com.example.springPostgres.model.Indirizzo;
 import com.example.springPostgres.repositories.AnagraficaRepository;
@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.Optional;
 
 @Service
-public class IndirizzoServiceImpl implements IindrizzoService {
+public class IndirizzoServiceImpl implements IndrizzoService {
 
     @Autowired
     private IndirizzoRepository indirizzoRepository;

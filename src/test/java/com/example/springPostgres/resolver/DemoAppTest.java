@@ -25,7 +25,6 @@ public class DemoAppTest {
     @Autowired
     MockMvc mockMvc;
 
-    @
 
     @Test
     void anagraficaAll() throws Exception {

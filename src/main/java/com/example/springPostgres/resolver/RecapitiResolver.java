@@ -1,7 +1,6 @@
 package com.example.springPostgres.resolver;
 
-import com.example.springPostgres.IService.IRecapitiService;
-import com.example.springPostgres.model.Anagrafica;
+import com.example.springPostgres.service.RecapitiService;
 import com.example.springPostgres.model.RecapitiTelefonici;
 import io.leangen.graphql.annotations.GraphQLMutation;
 import io.leangen.graphql.annotations.GraphQLQuery;
@@ -14,7 +13,7 @@ import java.util.Optional;
 public class RecapitiResolver {
 
     @Autowired
-    IRecapitiService recapitiService;
+    RecapitiService recapitiService;
 
     @GraphQLQuery
     public Optional<RecapitiTelefonici> recapitoById(Long id){

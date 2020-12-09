@@ -1,12 +1,11 @@
-package com.example.springPostgres.IService;
+package com.example.springPostgres.service;
 
 
 import com.example.springPostgres.model.Anagrafica;
-import com.example.springPostgres.model.Indirizzo;
 
 import java.util.Optional;
 
-public interface IAnagraficaService {
+public interface AnagraficaService {
 
     public Anagrafica newAnagrafica(Long id, String nome, String cognome);
     public boolean deleteAnagrafica(Long id);

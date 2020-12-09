@@ -1,11 +1,10 @@
-package com.example.springPostgres.IService;
+package com.example.springPostgres.service;
 
-import com.example.springPostgres.model.Anagrafica;
 import com.example.springPostgres.model.RecapitiTelefonici;
 
 import java.util.Optional;
 
-public interface IRecapitiService {
+public interface RecapitiService {
     public Optional<RecapitiTelefonici> recapitoById(Long id);
     public Iterable<RecapitiTelefonici> recapitoAll();
     public RecapitiTelefonici newRecapiti(Long id, Long idana, String tipo_recapito, String numero_recapito);

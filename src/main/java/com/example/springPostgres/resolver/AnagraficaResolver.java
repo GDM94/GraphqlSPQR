@@ -1,7 +1,7 @@
 package com.example.springPostgres.resolver;
 
 
-import com.example.springPostgres.IService.IAnagraficaService;
+import com.example.springPostgres.service.AnagraficaService;
 import com.example.springPostgres.model.Anagrafica;
 import io.leangen.graphql.annotations.GraphQLMutation;
 import io.leangen.graphql.annotations.GraphQLQuery;
@@ -14,7 +14,7 @@ import java.util.Optional;
 public class AnagraficaResolver {
 
     @Autowired
-    private IAnagraficaService anagraficaService;
+    private AnagraficaService anagraficaService;
 
     @GraphQLMutation
     public Anagrafica newAnagrafica(Long id, String nome, String cognome) {

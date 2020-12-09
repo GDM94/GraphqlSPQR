@@ -1,6 +1,6 @@
-package com.example.springPostgres.serviceImpl;
+package com.example.springPostgres.service.impl;
 
-import com.example.springPostgres.IService.IRecapitiService;
+import com.example.springPostgres.service.RecapitiService;
 import com.example.springPostgres.model.Anagrafica;
 import com.example.springPostgres.model.RecapitiTelefonici;
 import com.example.springPostgres.repositories.AnagraficaRepository;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class RecapitiServiceImpl implements IRecapitiService {
+public class RecapitiServiceImpl implements RecapitiService {
     @Autowired
     private RecapitiRepository recapitiRepository;
 

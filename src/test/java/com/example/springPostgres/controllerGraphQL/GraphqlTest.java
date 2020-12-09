@@ -1,13 +1,11 @@
-package com.example.springPostgres.controllerGraphQL;
-<<<<<<< HEAD
 
-=======
+package com.example.springPostgres.controllerGraphQL;
+/*
 import com.example.springPostgres.repositories.AnagraficaRepository;
 import org.json.JSONObject;
->>>>>>> c9dc3448c46a19457347a39a6cb09bdda17835b8
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
-import org.mockito.Moc
+import org.mockito.Moc;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.boot.configurationprocessor.json.JSONObject;
@@ -98,10 +96,6 @@ class GraphqlTest2 {
     AnagraficaRepository anagraficaRepository;
 
     @InjectMocks
-
-
-
-
     @Test
     public void Test5() throws Exception {
         //jo2.put("mutation", "{newAnagrafica(id: 15, nome: 'Carlo', cognome: 'Luciani') { idana nome cognome} }");
@@ -122,3 +116,5 @@ class GraphqlTest2 {
     }
 
 }
+
+*/

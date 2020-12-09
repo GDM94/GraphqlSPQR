@@ -1,10 +1,8 @@
 package com.example.springPostgres.resolver;
 
 
-import com.example.springPostgres.IService.IindrizzoService;
-import com.example.springPostgres.model.Anagrafica;
+import com.example.springPostgres.service.IndrizzoService;
 import com.example.springPostgres.model.Indirizzo;
-import com.example.springPostgres.model.RecapitiTelefonici;
 import io.leangen.graphql.annotations.GraphQLMutation;
 import io.leangen.graphql.annotations.GraphQLQuery;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +13,7 @@ import java.util.Optional;
 @Component
 public class IndirizziResolver {
     @Autowired
-    IindrizzoService idrizzoService;
+    IndrizzoService idrizzoService;
 
     @GraphQLQuery
     public Optional<Indirizzo> indirizzoById(Long id){

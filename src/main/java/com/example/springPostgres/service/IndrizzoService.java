@@ -1,11 +1,10 @@
-package com.example.springPostgres.IService;
+package com.example.springPostgres.service;
 
-import com.example.springPostgres.model.Anagrafica;
 import com.example.springPostgres.model.Indirizzo;
 
 import java.util.Optional;
 
-public interface IindrizzoService {
+public interface IndrizzoService {
 
     public Optional<Indirizzo> indirizzoById(Long id);
     public Iterable<Indirizzo> indirizzoAll();
