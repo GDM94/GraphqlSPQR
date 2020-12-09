@@ -8,6 +8,7 @@ import com.example.springPostgres.repositories.RecapitiRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,7 +25,7 @@ public class RecapitiServiceImpl implements RecapitiService {
     }
 
     @Override
-    public Iterable<RecapitiTelefonici> recapitoAll(){
+    public List<RecapitiTelefonici> recapitoAll(){
         return recapitiRepository.findAll();
     }
 
@@ -44,8 +45,14 @@ public class RecapitiServiceImpl implements RecapitiService {
 
     @Override
     public Boolean deleteRecapiti(long idreca){
-        recapitiRepository.deleteById(idreca);
-        return true;
+        Optional<RecapitiTelefonici> recapitiTelefonici = recapitiRepository.findById(idreca);
+        final boolean[] condition = {false};
+        recapitiTelefonici.ifPresent(r -> {
+            recapitiRepository.deleteById(idreca);
+            condition[0] = true;
+        });
+
+        return condition[0];
     }
 
     @Override

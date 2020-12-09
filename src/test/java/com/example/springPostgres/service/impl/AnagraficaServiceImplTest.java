@@ -26,7 +26,7 @@ public class AnagraficaServiceImplTest {
     @InjectMocks
     AnagraficaServiceImpl anagraficaService;
 
-    private static Anagrafica ana;
+    private static Anagrafica ana = new Anagrafica();;
     private static AnagraficaRepository anagraficaRepository;
     private static long id = (long) 1;
     private static String nome= "test";
@@ -36,7 +36,6 @@ public class AnagraficaServiceImplTest {
     @BeforeClass
     public static void init(){
         anagraficaRepository = Mockito.mock(AnagraficaRepository.class);
-        ana = new Anagrafica();
         ana.setIdana(id);
         ana.setNome(nome);
         ana.setCognome(cognome);
