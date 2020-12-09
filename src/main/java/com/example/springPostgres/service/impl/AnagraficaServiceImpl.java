@@ -1,7 +1,9 @@
 package com.example.springPostgres.service.impl;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import com.example.springPostgres.service.AnagraficaService;
 import com.example.springPostgres.model.Anagrafica;
@@ -45,8 +47,13 @@ public class AnagraficaServiceImpl implements AnagraficaService {
 
     @Override
     public boolean deleteAnagrafica(Long id) {
-        anagraficaRepository.deleteById(id);
-        return true;
+        Optional<Anagrafica> anagrafica = anagraficaRepository.findById(id);
+        AtomicBoolean condition = new AtomicBoolean(false);
+        anagrafica.ifPresent(a->{
+            anagraficaRepository.deleteById(id);
+            condition.set(true);
+        });
+        return condition.get();
     }
 
     @Override
@@ -56,7 +63,7 @@ public class AnagraficaServiceImpl implements AnagraficaService {
 
 
     @Override
-    public Iterable<Anagrafica> anagraficaAll(){
+    public List<Anagrafica> anagraficaAll(){
         return anagraficaRepository.findAll();
     }
 
