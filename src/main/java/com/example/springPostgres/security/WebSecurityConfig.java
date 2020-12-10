@@ -4,6 +4,7 @@ package com.example.springPostgres.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -80,12 +81,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .cors().and()
                 .authorizeRequests()
-                .antMatchers(
-                        //HttpMethod.GET,
-                        "/anagrafica"
-
-                ).permitAll()
-                .antMatchers("/public/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/anagrafica").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST,"/public/**").permitAll()
                 .anyRequest().authenticated();
 
         // Filtro Custom JWT
