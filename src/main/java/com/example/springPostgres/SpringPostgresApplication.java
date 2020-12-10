@@ -5,6 +5,7 @@ import com.example.springPostgres.model.AuthorityName;
 import com.example.springPostgres.model.User;
 import com.example.springPostgres.repositories.AuthorityRepository;
 import com.example.springPostgres.repositories.UserRepository;
+import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -19,10 +20,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.Arrays;
 import java.util.List;
 
-
-@SpringBootApplication
 @EnableJpaRepositories
+@SpringBootApplication
 public class SpringPostgresApplication {
+
+	@Autowired(required = false)
+	private DataSource datasource;
 
 	@Autowired
 	private ApplicationContext webApplicationContext;
