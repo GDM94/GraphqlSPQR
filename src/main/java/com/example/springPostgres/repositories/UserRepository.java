@@ -1,7 +1,14 @@
 package com.example.springPostgres.repositories;
 
-import com.example.springPostgres.model.Users;
+import com.example.springPostgres.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<Users, Long>{
+import java.util.Optional;
+
+public interface UserRepository extends JpaRepository<User, Long>{
+
+    Optional<User> findByUsername(String username);
+
+    Optional<User> findByToken(String token);
+
 }

@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Table(name= "utenti")
 @EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor
-public class Users {
+public class User {
     @Id
     private Long id;
 
