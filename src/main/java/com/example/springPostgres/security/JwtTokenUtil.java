@@ -3,12 +3,13 @@ package com.example.springPostgres.security;
 import com.example.springPostgres.security.dto.JwtUser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.dockerjava.api.model.Device;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mobile.device.Device;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -135,8 +136,6 @@ public class JwtTokenUtil implements Serializable {
 
     private String generateAudience(Device device) {
         String audience = AUDIENCE_UNKNOWN;
-        audience = AUDIENCE_WEB;
-        /*
         if (device.isNormal()) {
             audience = AUDIENCE_WEB;
         } else if (device.isTablet()) {
@@ -144,7 +143,6 @@ public class JwtTokenUtil implements Serializable {
         } else if (device.isMobile()) {
             audience = AUDIENCE_MOBILE;
         }
-        */
         return audience;
     }
 
